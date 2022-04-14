@@ -5,7 +5,7 @@ customer_id INT PRIMARY KEY
 ,customer_name VARCHAR(50)
 );
 
--- 確認用
+-- ・ｽm・ｽF・ｽp
 select * from customer; 
 select * from sales;
 
@@ -31,18 +31,18 @@ INSERT INTO sales
 ,(5, '2018/11/15', 2, null);
 
 SELECT * FROM sales 
-WHERE amount = 5000;
+WHERE amount < 5000;
 
 SELECT * FROM sales 
 WHERE amount >= 5000;
 
 SELECT sales_id, order_date, customer_id, amount * 1.1 FROM sales ;
 
-SELECT * FROM sales WHERE amount = NOT NULL; -- できない
+SELECT * FROM sales WHERE amount IS NOT NULL; 
 
 SELECT * FROM customer WHERE customer_name != '田中';
 
 UPDATE sales SET order_date='2018/11/05', customer_id=4 WHERE sales_id = 4;
 
-DELETE FROM sales WHERE amount = NULL;
+DELETE FROM sales WHERE amount is NULL;
 
