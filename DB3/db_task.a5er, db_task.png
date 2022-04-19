@@ -1,0 +1,386 @@
+﻿# A5:ER FORMAT:16
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright © 2007 m.matsubara
+# A5:SQL Mk-2 Version 2.17.1 Copyright © 1997 - 2022 m.matsubara
+#  https://a5m2.mmatsubara.com
+
+[Manager]
+ProjectName=レシート管理
+Author=赤嶺駿
+MaxEntityRowShow=1000
+ReadOnlyRecommend=0
+Page=Main
+PageInfo="Main",2,"A3Landscape",$FFFFFF
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=1
+ViewMode=2
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=Tahoma
+FontSize=6
+PaperSize=A4Landscape
+HeaderLeft=
+HeaderCenter=
+HeaderRight=
+FooterLeft=
+FooterCenter=
+FooterRight=
+ShowPageoutRelation=1
+RDBMSType=6
+RDBMSTypeName=PostgreSQL
+DefaultPkName=%0:s_PKC
+DefaultPkIndexName=%0:s_PKI
+DefaultIndexName=%0:s_IX%1:d
+DefaultFkName=%0:s_FK%1:d
+SqlSeparator=0
+UpperCaseKeyword=0
+ShowTag=1
+ShowCommonAttributes=0
+BugFixEntityWidth=1
+
+[Entity]
+PName=Sales_details
+LName=売り上げ明細
+Comment=
+TableOption=
+Page=MAIN
+Left=100
+Top=100
+Field="企業コード","company_code","@INT","NOT NULL",0,"","",$FFFFFFFF,""
+Field="支店コード","branch_code","@INT","NOT NULL",1,"","",$FFFFFFFF,""
+Field="伝票番号","detail_num","@INT","NOT NULL",2,"","",$FFFFFFFF,""
+Field="責任者ナンバー","\nresponsible_person","@INT","NOT NULL",,"","",$FFFFFFFF,""
+Field="売り上げ日時","sales_day","@DATE","NOT NULL",,"","",$FFFFFFFF,""
+Field="売り上げ時間","sales_time","@TIME","NOT NULL",,"","",$FFFFFFFF,""
+Field="イートイン","eat_in","@BOOLEAN","NOT NULL",,"","",$FFFFFFFF,""
+Field="支払方法区分","\npayment_method_class","@INT","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220419134606
+Position="MAIN",100,100
+ZOrder=1
+
+[Entity]
+PName=company_info
+LName=企業情報
+Comment=
+TableOption=
+Page=MAIN
+Left=1400
+Top=100
+Field="企業コード","company_code","@INT","NOT NULL",0,"","",$FFFFFFFF,""
+Field="企業名","company_name","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+Field="電話番号","phone_number","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+Field="郵便番号","postal_code","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+Field="番地以降","after_street_address","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220419124638
+Position="MAIN",1400,100
+ZOrder=2
+
+[Entity]
+PName=sales_products
+LName=売り上げ商品
+Comment=
+TableOption=
+Page=MAIN
+Left=250
+Top=500
+Field="企業コード","company_id","@INT","NOT NULL",0,"","",$FFFFFFFF,""
+Field="支店コード","branch_id","@INT","NOT NULL",1,"","",$FFFFFFFF,""
+Field="伝票番号","detail_num","@INT","NOT NULL",2,"","",$FFFFFFFF,""
+Field="商品コード","product_code","@INT","NOT NULL",5,"","",$FFFFFFFF,""
+Field="売り上げ日","sales_date","@DATE","NOT NULL",3,"","",$FFFFFFFF,""
+Field="売り上げ時間","time","@TIME","NOT NULL",4,"","",$FFFFFFFF,""
+Field="売り上げ点数","number_of_sold","@INT",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220419130634
+Position="MAIN",250,500
+ZOrder=3
+
+[Entity]
+PName=tax
+LName=税込み区分
+Comment=
+TableOption=
+Page=MAIN
+Left=1650
+Top=450
+Field="税込み区分","tax_id","@INT","NOT NULL",0,"","",$FFFFFFFF,""
+Field="税率","tax","@INT","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220419121736
+Position="MAIN",1650,450,129,53
+ZOrder=4
+
+[Entity]
+PName=address
+LName=住所
+Comment=
+TableOption=
+Page=MAIN
+Left=950
+Top=800
+Field="郵便番号","postal_num","@VARCHAR","NOT NULL",0,"","",$FFFFFFFF,""
+Field="町名までの住所","addoress_1","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220419122407
+Position="MAIN",950,800,174,51
+ZOrder=5
+
+[Entity]
+PName=branch_info
+LName=支店情報
+Comment=
+TableOption=
+Page=MAIN
+Left=800
+Top=50
+Field="企業コード","company_code","","NOT NULL",0,"","",$FFFFFFFF,""
+Field="支店コード","branch_code","","NOT NULL",1,"","",$FFFFFFFF,""
+Field="支店名","branch_name","",,,"","",$FFFFFFFF,""
+Field="支店名","支店名","",,,"","",$FFFFFFFF,""
+Field="支店電話番号","支店電話番号","",,,"","",$FFFFFFFF,""
+Field="支店郵便番号","branch_ ","",,,"","",$FFFFFFFF,""
+Field="番地以降","after_street_address","",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220419123516
+Position="MAIN",800,50
+ZOrder=6
+
+[Relation]
+Entity1=company_info
+Entity2=branch_info
+RelationType1=2
+RelationType2=3
+Fields1=company_code
+Fields2=company_code
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,676,9324,1327,R,R,""
+Dependence=1
+Caption=
+PName=
+LineMode=0
+Bar1=68
+Bar2=932
+Bar3=133
+TermPos1=R
+TermPos2=R
+ZOrder=7
+
+[Relation]
+Entity1=address
+Entity2=branch_info
+RelationType1=1
+RelationType2=3
+Fields1=postal_num
+Fields2=
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,2420,7580,3643,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=242
+Bar2=758
+Bar3=364
+TermPos1=R
+TermPos2=R
+ZOrder=8
+
+[Relation]
+Entity1=Sales_details
+Entity2=branch_info
+RelationType1=1
+RelationType2=3
+Fields1=company_code,branch_code,detail_num,sales_day,sales_time
+Fields2=
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,676,9324,1423,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=68
+Bar2=932
+Bar3=142
+TermPos1=R
+TermPos2=R
+ZOrder=10
+
+[Entity]
+PName=product
+LName=商品
+Comment=
+TableOption=
+Page=MAIN
+Left=1300
+Top=950
+Field="商品コード","product_code","@INT","NOT NULL",0,"","",$FFFFFFFF,""
+Field="商品名","product_name","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+Field="単価","price","@INT","NOT NULL",,"","",$FFFFFFFF,""
+Field="税込み区分","tax_id","@INT","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220419124228
+Position="MAIN",1300,950
+ZOrder=11
+
+[Relation]
+Entity1=tax
+Entity2=product
+RelationType1=2
+RelationType2=3
+Fields1=tax_id
+Fields2=tax_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,3045,8665,10000,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=304
+Bar2=866
+Bar3=1000
+TermPos1=R
+TermPos2=R
+ZOrder=12
+
+[Relation]
+Entity1=address
+Entity2=company_info
+RelationType1=1
+RelationType2=3
+Fields1=postal_num
+Fields2=
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,10000,6394,2425,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=1000
+Bar2=639
+Bar3=242
+TermPos1=R
+TermPos2=R
+ZOrder=14
+
+[Relation]
+Entity1=company_info
+Entity2=sales_products
+RelationType1=1
+RelationType2=3
+Fields1=company_code
+Fields2=
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,1928,8064,0,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=193
+Bar2=806
+Bar3=0
+TermPos1=R
+TermPos2=R
+ZOrder=15
+
+[Relation]
+Entity1=branch_info
+Entity2=sales_products
+RelationType1=1
+RelationType2=3
+Fields1=company_code,branch_code
+Fields2=
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,6831,7893,5688,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=683
+Bar2=789
+Bar3=569
+TermPos1=R
+TermPos2=R
+ZOrder=16
+
+[Relation]
+Entity1=product
+Entity2=sales_products
+RelationType1=1
+RelationType2=3
+Fields1=product_code
+Fields2=
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,2107,4989,10000,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=211
+Bar2=499
+Bar3=1000
+TermPos1=R
+TermPos2=R
+ZOrder=17
+
+[Entity]
+PName=payment_method
+LName=支払方法
+Comment=
+TableOption=
+Page=Main
+Left=100
+Top=1000
+Field="支払方法区分","支払方法区分","@INT","NOT NULL",0,"","",$FFFFFFFF,""
+Field="支払方法","支払方法","@VARCHAR","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220419134809
+Position="Main",100,1000
+ZOrder=18
+
+[Relation]
+Entity1=payment_method
+Entity2=Sales_details
+RelationType1=1
+RelationType2=3
+Fields1=支払方法区分
+Fields2=
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,500,9500,1202,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=50
+Bar2=950
+Bar3=120
+TermPos1=R
+TermPos2=R
+ZOrder=19
