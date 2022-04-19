@@ -56,7 +56,7 @@ create table sales_products (
   , sales_date date not null
   , sales_time time not null
   , number_of_sold integer
-  , constraint sales_products_PKC primary key (company_id,branch_id,detail_num,sales_date,time,product_code)
+  , constraint sales_products_PKC primary key (company_id,branch_id,detail_num,sales_date,sales_time,product_code)
 ) ;
 
 -- drop table sales_products;
@@ -85,6 +85,11 @@ create table sales_details (
   , constraint Sales_details_PKC primary key (company_code,branch_code,detail_num)
 ) ;
 
+
+create table responsible_person (
+ responsible_id INT PRIMARY KEY,
+ responsible_name VARCHAR(50)
+)
 
 comment on table payment_method is 'Žx•¥•û–@';
 comment on column payment_method."Žx•¥•û–@‹æ•ª" is 'Žx•¥•û–@‹æ•ª';

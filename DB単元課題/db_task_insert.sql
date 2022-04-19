@@ -26,15 +26,19 @@ VALUES
 (2, 1.10);
 
 INSERT INTO sales_products 
-(company_id, branch_id, detail_num, product_code, sales_date, time, number_of_sold)
+(company_id, branch_id, detail_num, product_code, sales_date, sales_time, number_of_sold)
 VALUES
-(1, 1, 1, 1, '2022/04/01', '19:00', '1'),
-(1, 1, 1, 2, '2022/04/01', '19:00', '1'),
-(1, 1, 1, 3, '2022/04/01', '19:00', '1'),
-(1, 1, 1, 4, '2022/04/01', '19:00', '1');
+(1, 1, 1, 1, '2022/04/01', '19:00', 1),
+(1, 1, 1, 2, '2022/04/01', '19:00', 1),
+(1, 1, 1, 3, '2022/04/01', '19:00', 1),
+(1, 1, 1, 4, '2022/04/01', '19:00', 1);
 
+INSERT INTO responsible_person VALUES(001, 'ŽR“c‘¾˜Y');
+
+-- delete sales_products;
 INSERT INTO sales_details
 (company_code, branch_code, detail_num, responsible_person, sales_day, sales_time, eat_in, payment_method_class)
+VALUES(1, 1, 1, 1, '2022/04/01', '19:00', false, 2);
 
 select * from payment_method;
 select * from product;
@@ -44,3 +48,4 @@ select * from tax;
 select * from sales_products;
 select * from company_info;
 select * from sales_details;
+select * from responsible_person;
