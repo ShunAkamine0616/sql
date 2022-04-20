@@ -10,10 +10,12 @@ create table payment_method (
 
 -- ¤•i
 --* RestoreFromTempTable
+drop table product;
 create table product (
   product_code integer not null
   , product_name character varying not null
   , price integer not null
+  , discount integer not null
   , tax_id integer not null
   , constraint product_PKC primary key (product_code)
 ) ;
@@ -40,6 +42,7 @@ create table address (
 
 -- Å‚İ‹æ•ª
 --* RestoreFromTempTable
+drop table tax;
 create table tax (
   tax_id integer not null
   , tax decimal not null
@@ -73,10 +76,12 @@ create table company_info (
 
 -- ”„‚èã‚°–¾×
 --* RestoreFromTempTable
+drop table sales_details;
 create table sales_details (
   company_code integer not null
   , branch_code integer not null
   , detail_num integer not null
+  , cash_register_num int not null
   , responsible_person integer not null
   , sales_day date not null
   , sales_time time not null
@@ -84,6 +89,7 @@ create table sales_details (
   , payment_method_class integer not null
   , constraint Sales_details_PKC primary key (company_code,branch_code,detail_num)
 ) ;
+
 
 
 create table responsible_person (
